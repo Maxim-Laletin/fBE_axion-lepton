@@ -104,7 +104,6 @@ H_t = @(x) H(x)./(1.0 + gtilda(x)); % GeV
 % % Hubble rate with constant dof
 % const_dof = 75;
 % H_t = @(x) mtau^2./x.^2./(MPl/sqrt(8*pi^3.*const_dof/90)); % GeV
-% % h_interpol = @(x) const_dof; 
 % gs = @(x) const_dof;
 % gtilda = @(x) 0.0; 
 % ========================================================================
