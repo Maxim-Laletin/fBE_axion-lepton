@@ -69,7 +69,7 @@ qi = logspace(log10(qi_in),log10(qi_end),200);
 %% Effective number of density and entropy degrees of freedom
 
 % Imported interpolation table from the corresponding file
-gdof_array = importdata('Rel_dof_from_1606_07494.csv',' ',2);
+gdof_array = importdata('Rel_dof_from_1606_07494.dat',' ',2);
 
 gdof_x = mtau./(10.^(gdof_array.data(:,1))*1e-3); % x [1]
 gdof_y = gdof_array.data(:,2); % g_rho
