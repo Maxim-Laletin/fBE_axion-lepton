@@ -303,7 +303,7 @@ dNeff_full_lateUni = dNeff_general(100E-9,43/11);
 % Describes the PDE (with a possibility to pass external params)
 function [c,f,s] = boltfunC(q,x,u,dudq,params,gtild,ht)
     c = 1; % factor in front of df/dx
-    f = gtild(x).*u.*q./x; % factor in front of
+    f = gtild(x).*u.*q./x; % function inside the derivative d/dq
     % ==== Source function ====
     s = (B(x,q,params,ht) - A(x,q,params,ht)).*(faeq(q) - u) - 3*gtild(x).*u./x; 
 
