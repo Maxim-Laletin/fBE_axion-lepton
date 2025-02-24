@@ -17,7 +17,7 @@ yline(0.3,'--','LineWidth',2,'Color',[0.7176 0.2745 1.0]); % Planck
 yline(0.1,'--','LineWidth',2,'Color',[0.929 0.694 0.125]); % Simons obs.
 yline(0.054,'--','LineWidth',2,'Color',[0.466 0.674 0.188]); % CMB-S4
 grid on;
-xlabel('f_a/C_{\mu} [{\rm GeV}]','Interpreter','tex');
+xlabel('f_a/C_{\tau\mu} [{\rm GeV}]','Interpreter','tex');
 ylabel('\Delta N_{\rm eff}','Interpreter','tex')
 set(axes1,'FontSize',25,'XMinorTick','on','XScale','log','YMinorTick','on',...
     'YScale','linear');
