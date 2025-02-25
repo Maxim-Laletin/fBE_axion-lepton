@@ -65,12 +65,30 @@ qi = logspace(log10(qi_in),log10(qi_end),200);
 %/////////////////////////////////////////////////////////////////////////
 %% Effective number of density and entropy degrees of freedom
 
-% The fitting functions are specified in external files
+% Imported interpolation table from the corresponding file
+gdof_array = importdata('Rel_dof_from_1606_07494.csv',' ',2);
 
-grho = @(x) grho_function(mmu./x);
-gs = @(x) gs_function(mmu./x);
+gdof_x = mtau./(10.^(gdof_array.data(:,1))*1e-3); % x [1]
+gdof_y = gdof_array.data(:,2); % g_rho
+gdof_z = gdof_y./gdof_array.data(:,3); % g_s
 
-gtilda = @(x) gtilda_function(mmu./x);
+% Constructing splines
+gs_sp = spline(gdof_x,gdof_z); % g_s(x) as a cubic spline
+grho_sp = spline(gdof_x,gdof_y); %g_rho(x) as a cubic spline
+
+% Entropy degrees of freedom as a function of x
+gs = @(x) ppval(gs_sp,x);
+% Energy density degrees of freedom as a function of x 
+grho = @(x) ppval(grho_sp,x);
+
+% ** Calculate the derivative of gs **
+% Coefficients and break-points of the spline
+[breaks,coefs,l,k,d] = unmkpp(gs_sp);
+
+% Create a piece-wise polynomial for the derivative
+pp2 = mkpp(breaks,(-1/3)*repmat(k-1:-1:1,d*l,1).*coefs(:,1:k-1),d);
+% g_tilda as a function of x
+gtilda = @(x) (x./gs(x)).*ppval(pp2,x);
 
 %% Cosmology
 
